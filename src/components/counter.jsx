@@ -7,37 +7,29 @@ class Counter extends Component {
   //   this.handleIncrement = this.handleIncrement.bind(this);
   // }
   state = {
-    count: 0,
-    tags: ['tag1', 'tag2', 'tag3'],
-    product: 'shoes',
+    value: this.props.value,
   };
 
-  handleIncrement = (product) => {
-    console.log(product);
-    this.setState({ count: this.state.count + 1 });
+  handleIncrement = () => {
+    this.setState({ value: this.state.value + 1 });
   };
   render() {
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={() => this.handleIncrement(product)}
+          onClick={() => this.handleIncrement()}
           className='btn btn-secondary btn-sm'
         >
           Increment
         </button>
-        <ul>
-          {this.state.tags.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
       </div>
     );
   }
 
   getBadgeClasses() {
     let classes = 'badge m-2 badge-';
-    classes += this.state.count === 0 ? 'danger' : 'primary';
+    classes += this.state.count === 0 ? 'warning' : 'primary';
     return classes;
   }
 
