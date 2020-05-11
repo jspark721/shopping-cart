@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
+  // constructor() {
+  // you don't have to use bind method if you use arrow function
+  //   super();
+  //   this.handleIncrement = this.handleIncrement.bind(this);
+  // }
   state = {
     count: 0,
     tags: ['tag1', 'tag2', 'tag3'],
+  };
+
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
   };
   render() {
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button class='btn btn-secondary btn-sm'>Increment</button>
+        <button
+          onClick={this.handleIncrement}
+          className='btn btn-secondary btn-sm'
+        >
+          Increment
+        </button>
         <ul>
           {this.state.tags.map((tag) => (
             <li key={tag}>{tag}</li>
